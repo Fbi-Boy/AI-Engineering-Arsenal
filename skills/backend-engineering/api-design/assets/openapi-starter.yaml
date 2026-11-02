@@ -1,0 +1,174 @@
+openapi: 3.2.1
+info:
+  title: Example API
+  version: 1.0.0
+  summary: Replace this starter with a domain-specific API contract.
+  description: >
+    This is a starter contract. Replace all example resources, schemas,
+    server URLs, and security requirements before use.
+servers:
+  - url: https://api.example.invalid/v1
+    description: Placeholder only; not a real service.
+tags:
+  - name: resources
+    description: Example resource operations.
+paths:
+  /resources:
+    get:
+      operationId: listResources
+      tags: [resources]
+      summary: List resources
+      description: Returns a bounded page of resources visible to the caller.
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 25
+        - name: cursor
+          in: query
+          description: Opaque continuation token returned by the previous page.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A page of resources.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourcePage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+      security:
+        - bearerAuth: []
+    post:
+      operationId: createResource
+      tags: [resources]
+      summary: Create a resource
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateResourceRequest"
+      responses:
+        "201":
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          $ref: "#/components/responses/Conflict"
+      security:
+        - bearerAuth: []
+  /resources/{resourceId}:
+    parameters:
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getResource
+      tags: [resources]
+      summary: Get a resource
+      responses:
+        "200":
+          description: Resource found and visible to the caller.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+        - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Placeholder scheme; define issuer, audience, and validation policy separately.
+  schemas:
+    Resource:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+    CreateResourceRequest:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+    ResourcePage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+        nextCursor:
+          type: string
+          description: Omitted when there is no next page.
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri-reference
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        instance:
+          type: string
+          format: uri-reference
+  responses:
+    BadRequest:
+      description: The request is invalid.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+    Unauthorized:
+      description: Authentication is required.
+    Forbidden:
+      description: The caller is not permitted to perform this operation.
+    NotFound:
+      description: The resource does not exist or is not visible to the caller.
+    Conflict:
+      description: The request conflicts with the current resource state.
+security:
+  - bearerAuth: []
