@@ -41,15 +41,21 @@ The following packages have been submitted for review. "In Review" does not mean
 | project-brief | In Review | Turn an idea or discovery output into a concise project initiation brief | [project-brief/](project-planning/project-brief/) |
 | task-breakdown | In Review | Decompose agreed scope into traceable, verifiable work items and dependencies | [task-breakdown/](project-planning/task-breakdown/) |
 | change-impact-analysis | In Review | Trace proposed changes to affected requirements, architecture, data, tests, and operations | [change-impact-analysis/](project-planning/change-impact-analysis/) |
+| codebase-understanding | In Review | Map an existing repository, stack, architecture, entry points, and feature paths from evidence | [codebase-understanding/](software-maintenance/codebase-understanding/) |
+| code-review | In Review | Review diffs for actionable correctness, security, regression, and maintainability findings | [code-review/](software-maintenance/code-review/) |
+| debugging-and-root-cause-analysis | In Review | Investigate failures from sanitized evidence through hypotheses, root cause, and regression prevention | [debugging-and-root-cause-analysis/](software-maintenance/debugging-and-root-cause-analysis/) |
 | user-stories | In Review | Create and refine outcome-oriented backlog stories with traceability | [user-stories/](requirements-engineering/user-stories/) |
 | use-case-modeling | In Review | Model actors, system boundaries, goal-oriented use cases, and scenarios | [use-case-modeling/](requirements-engineering/use-case-modeling/) |
 | sequence-diagram-modeling | In Review | Model time-ordered interactions, alternatives, asynchronous flows, and failures | [sequence-diagram-modeling/](requirements-engineering/sequence-diagram-modeling/) |
 | acceptance-criteria | In Review | Write observable acceptance conditions for requirements and user stories | [acceptance-criteria/](quality-engineering/acceptance-criteria/) |
+| test-plan-design | In Review | Plan risk-based verification, traceability, test levels, environments, and release exit criteria | [test-plan-design/](quality-engineering/test-plan-design/) |
 | architecture-decision-record | In Review | Document significant architecture decisions, options, rationale, and consequences | [architecture-decision-record/](architecture/architecture-decision-record/) |
 | system-architecture-design | In Review | Create C4-oriented system architecture proposals and quality trade-off analysis | [system-architecture-design/](architecture/system-architecture-design/) |
 | api-design | In Review | Design secure, evolvable HTTP API contracts and OpenAPI documentation | [api-design/](backend-engineering/api-design/) |
 | database-erd-design | In Review | Model relational entities, attributes, keys, relationships, and constraints | [database-erd-design/](database-engineering/database-erd-design/) |
 | database-schema-review | In Review | Review existing relational schemas, integrity, indexes, and migration safety | [database-schema-review/](database-engineering/database-schema-review/) |
+| frontend-feature-implementation | In Review | Implement user-facing frontend features within the existing stack, with accessibility and responsive verification | [frontend-feature-implementation/](frontend-engineering/frontend-feature-implementation/) |
+| backend-feature-implementation | In Review | Implement server-side features with validation, authorization, integrity, and integration safeguards | [backend-feature-implementation/](backend-engineering/backend-feature-implementation/) |
 
 ## Initial domain taxonomy
 
@@ -93,7 +99,7 @@ Build the library in vertical slices. Prioritize complete, reviewed, evaluated s
 12. database-schema-review
 13. sequence-diagram-modeling
 
-### Phase 3 — Implementation workflows
+### Phase 3 — Implementation and maintenance workflows
 
 14. frontend-feature-implementation
 15. backend-feature-implementation
