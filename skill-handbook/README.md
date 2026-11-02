@@ -107,7 +107,9 @@ Use **Draft**, **In Review**, **Ready**, or **Deprecated** as lifecycle labels. 
 
 - [Agent Skills — Specification](https://agentskills.io/specification)
 - [Agent Skills — Overview](https://agentskills.io/home)
-- [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills)
-- [OpenAI Developers — Skills](https://developers.openai.com/plugins/concepts/skills)
+- [OpenAI — Build skills](https://developers.openai.com/api/docs/guides/tools-skills)
+- [OpenAI Developers — Skills](https://developers.openai.com/api/docs/guides/tools-skills)
+- [OpenAI Developers — Build skills](https://developers.openai.com/plugins/build/skills)
+- [OpenAI Developers — Skills in plugins](https://developers.openai.com/plugins/concepts/skills)
 
 The open specification defines the portable package format. Host documentation defines additional behavior that may differ between products and runtimes.
