@@ -26,20 +26,34 @@ Use these statuses in the catalog and pull request descriptions:
 - **Proposed** — problem identified; design not complete.
 - **Draft** — package is being authored.
 - **In Review** — implementation and evaluation cases are ready for review.
-- **Ready** — required review and validation gates passed.
+- **Ready** — required review and validation gates passed, including evaluation in a target agent runtime.
 - **Deprecated** — no longer recommended; replacement or reason is documented.
 
-Do not mark a skill Ready based only on the presence of a SKILL.md file.
+Do not mark a skill Ready based only on the presence of a SKILL.md file. Writing evaluation cases is not the same as running them.
+
+## Current packages
+
+The following packages have been submitted for review. "In Review" does not mean runtime evaluation or stakeholder approval has passed.
+
+| Skill | Status | Purpose | Package |
+| --- | --- | --- | --- |
+| requirements-discovery | In Review | Discover and document stakeholder needs, software requirements, constraints, and open decisions | [requirements-discovery/](project-planning/requirements-discovery/) |
+| project-brief | In Review | Turn a software idea or discovery output into a concise project initiation brief | [project-brief/](project-planning/project-brief/) |
+| task-breakdown | In Review | Decompose agreed scope into traceable, independently verifiable work items and dependencies | [task-breakdown/](project-planning/task-breakdown/) |
+| acceptance-criteria | In Review | Write observable, testable acceptance conditions for requirements and user stories | [acceptance-criteria/](quality-engineering/acceptance-criteria/) |
+| architecture-decision-record | In Review | Document significant architecture decisions, options, rationale, and consequences | [architecture-decision-record/](architecture/architecture-decision-record/) |
+| use-case-modeling | In Review | Model actors, system boundaries, goal-oriented use cases, and interaction scenarios | [use-case-modeling/](requirements-engineering/use-case-modeling/) |
+| change-impact-analysis | In Review | Trace proposed changes to affected requirements, architecture, data, tests, and operations | [change-impact-analysis/](project-planning/change-impact-analysis/) |
 
 ## Initial domain taxonomy
 
-The following domains define the intended coverage of AI Engineering Arsenal. Each item is a candidate capability, not an implemented skill.
+The following domains define intended coverage beyond the current packages. Items not listed in the current package table are candidates, not implemented skills.
 
 | Domain | Candidate skill packages |
 | --- | --- |
-| Project planning | requirements discovery, project brief, scope planning, estimation, roadmap, task breakdown |
-| System analysis | use-case modeling, user stories, acceptance criteria, process analysis, functional/non-functional requirements |
-| Software architecture | architecture decision records, C4 diagrams, component design, API architecture, design trade-off analysis |
+| Project planning | scope planning, estimation, roadmap |
+| System analysis | user stories, process analysis, functional/non-functional requirements |
+| Software architecture | C4 diagrams, component design, API architecture, design trade-off analysis |
 | UI/UX engineering | design brief, user flows, wireframes, design-system audit, accessibility review |
 | Frontend engineering | frontend scaffolding, component design, state management, responsive UI, frontend testing |
 | Backend engineering | API design, service implementation, authentication patterns, background jobs, backend testing |
@@ -61,38 +75,39 @@ Build the library in vertical slices. A few complete, evaluated skills are more 
 3. task-breakdown
 4. acceptance-criteria
 5. architecture-decision-record
+6. change-impact-analysis
 
 ### Phase 2 — Core software design
 
-6. use-case-modeling
-7. system-architecture-design
-8. api-design
-9. database-erd-design
-10. database-schema-review
+7. use-case-modeling
+8. system-architecture-design
+9. api-design
+10. database-erd-design
+11. database-schema-review
 
 ### Phase 3 — Implementation workflows
 
-11. frontend-feature-implementation
-12. backend-feature-implementation
-13. codebase-understanding
-14. code-review
-15. debugging-and-root-cause-analysis
+12. frontend-feature-implementation
+13. backend-feature-implementation
+14. codebase-understanding
+15. code-review
+16. debugging-and-root-cause-analysis
 
 ### Phase 4 — Quality, safety, and delivery
 
-16. test-plan-design
-17. automated-test-authoring
-18. security-review
-19. ci-cd-pipeline-design
-20. release-readiness-review
+17. test-plan-design
+18. automated-test-authoring
+19. security-review
+20. ci-cd-pipeline-design
+21. release-readiness-review
 
 ### Phase 5 — Advanced capabilities
 
-21. rag-system-design
-22. ai-agent-workflow-design
-23. mcp-tool-integration
-24. performance-analysis
-25. technical-documentation
+22. rag-system-design
+23. ai-agent-workflow-design
+24. mcp-tool-integration
+25. performance-analysis
+26. technical-documentation
 
 Priorities may change based on actual project demand, evaluation results, and maintenance cost.
 
@@ -104,17 +119,8 @@ Priorities may change based on actual project demand, evaluation results, and ma
 4. Add references, scripts, assets, and evaluation cases only where needed.
 5. Run the checks in the [review checklist](../skill-handbook/templates/review-checklist.md).
 6. Open a focused pull request. Do not combine unrelated skills into one large PR.
-7. Update this catalog with the new package, status, and a one-line purpose after it is accepted.
-
-## Catalog entry format
-
-When a skill is ready, add it to the appropriate domain using this format:
-
-| Skill | Status | Purpose | Package |
-| --- | --- | --- | --- |
-| requirements-discovery | In Review | Discover and document stakeholder needs, software requirements, constraints, and open decisions | [requirements-discovery/](project-planning/requirements-discovery/) |
-
-Remove the example row when the first real package is added.
+7. Register the package here as In Review when its implementation and evaluation cases are submitted.
+8. Mark it Ready only after review, required validation, and target-runtime evaluations pass.
 
 ## Scope rule
 
