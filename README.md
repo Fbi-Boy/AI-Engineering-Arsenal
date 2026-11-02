@@ -48,5 +48,6 @@ This repository is in its foundation phase. The first milestone establishes auth
 ## References
 
 - [Agent Skills specification](https://agentskills.io/specification)
-- [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills)
-- [OpenAI Developers — Skills](https://developers.openai.com/plugins/concepts/skills)
+- [OpenAI API — Skills](https://developers.openai.com/api/docs/guides/tools-skills)
+- [OpenAI Developers — Build skills](https://developers.openai.com/plugins/build/skills)
+- [OpenAI Developers — Skills in plugins](https://developers.openai.com/plugins/concepts/skills)
