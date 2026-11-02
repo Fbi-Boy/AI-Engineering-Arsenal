@@ -1,0 +1,40 @@
+@startuml
+title [Scenario Name]
+
+actor User
+participant "Client Application" as Client
+participant "API Service" as API
+database "Application Database" as DB
+queue "Work Queue" as Queue
+participant "Background Worker" as Worker
+
+User -> Client: Start [goal]
+Client -> API: [HTTP request / command]
+activate API
+
+API -> API: Validate request
+API -> API: Authenticate and authorize
+
+alt [request is valid and authorized]
+  API -> DB: Persist [domain record / operation]
+  DB --> API: [Persisted result]
+  API -> Queue: Publish [work item]
+  Queue --> API: [Durable acknowledgment]
+  API --> Client: [Accepted response + operation ID]
+else [validation or authorization fails]
+  API --> Client: [Safe error response]
+end
+
+deactivate API
+
+... asynchronous processing occurs later ...
+
+Queue -> Worker: Deliver [work item]
+activate Worker
+Worker -> DB: Load and process [operation]
+DB --> Worker: [Current state]
+Worker -> DB: Persist [result / status]
+DB --> Worker: [Saved status]
+deactivate Worker
+
+@enduml
