@@ -43,7 +43,7 @@ Required fields in the open Agent Skills specification:
 
 | Field | Requirement |
 | --- | --- |
-| name | Required; lowercase letters, numbers, and hyphens; maximum 64 characters; must not begin or end with a hyphen |
+| name | Required; 1–64 lowercase ASCII letters and digits separated by single hyphens; no leading, trailing, or consecutive hyphens; must exactly match the skill directory name |
 | description | Required; non-empty; maximum 1024 characters; explain capability and activation conditions |
 
 The directory name should match the metadata name. Keep the description specific: it is a routing signal, not a marketing slogan.
@@ -140,5 +140,7 @@ For host-specific features, state:
 ## 7. References
 
 - [Agent Skills specification](https://agentskills.io/specification)
-- [OpenAI — Build skills](https://learn.chatgpt.com/docs/build-skills)
-- [OpenAI Developers — Skills](https://developers.openai.com/plugins/concepts/skills)
+- [OpenAI — Build skills](https://developers.openai.com/api/docs/guides/tools-skills)
+- [OpenAI Developers — Skills](https://developers.openai.com/api/docs/guides/tools-skills)
+- [OpenAI Developers — Build skills](https://developers.openai.com/plugins/build/skills)
+- [OpenAI Developers — Skills in plugins](https://developers.openai.com/plugins/concepts/skills)
