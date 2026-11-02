@@ -112,7 +112,7 @@ When a skill is ready, add it to the appropriate domain using this format:
 
 | Skill | Status | Purpose | Package |
 | --- | --- | --- | --- |
-| example-skill | Draft | One-sentence task description | [example-skill/](example-skill/) |
+| requirements-discovery | In Review | Discover and document stakeholder needs, software requirements, constraints, and open decisions | [requirements-discovery/](project-planning/requirements-discovery/) |
 
 Remove the example row when the first real package is added.
 
