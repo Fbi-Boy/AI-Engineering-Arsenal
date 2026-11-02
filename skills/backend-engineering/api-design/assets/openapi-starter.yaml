@@ -139,29 +139,7 @@ components:
             $ref: "#/components/schemas/Resource"
         nextCursor:
           type: string
-          nullable: true
-  responses:
-    BadRequest:
-      description: The request is invalid.
-      content:
-        application/problem+json:
-          schema:
-            $ref: "#/components/schemas/Problem"
-    Unauthorized:
-      description: Authentication is required.
-    Forbidden:
-      description: The caller is not permitted to perform this operation.
-    NotFound:
-      description: The resource does not exist or is not visible to the caller.
-    Conflict:
-      description: The request conflicts with the current resource state.
-    Problem:
-      description: Machine-readable error.
-      content:
-        application/problem+json:
-          schema:
-            $ref: "#/components/schemas/Problem"
-  schemas:
+          description: Omitted when there is no next page.
     Problem:
       type: object
       properties:
@@ -177,5 +155,20 @@ components:
         instance:
           type: string
           format: uri-reference
+  responses:
+    BadRequest:
+      description: The request is invalid.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+    Unauthorized:
+      description: Authentication is required.
+    Forbidden:
+      description: The caller is not permitted to perform this operation.
+    NotFound:
+      description: The resource does not exist or is not visible to the caller.
+    Conflict:
+      description: The request conflicts with the current resource state.
 security:
   - bearerAuth: []
