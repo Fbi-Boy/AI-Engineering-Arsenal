@@ -1,6 +1,6 @@
 ---
 name: requirements-discovery
-description: Discover, clarify, analyze, and document stakeholder needs for a software or digital product. Use when starting a project, exploring an unclear request, gathering requirements, defining scope, or turning informal ideas into a validated requirements baseline.
+description: Discover, clarify, analyze, and document stakeholder needs for a software or digital product. Use when starting a project, exploring an unclear request, gathering requirements, defining scope, or turning informal ideas into a structured, reviewable requirements baseline.
 metadata:
   author: AI Engineering Arsenal
   version: "0.1.0"
