@@ -2,7 +2,7 @@
 
 This directory contains the actual reusable skill packages. Each skill must be self-contained, have one SKILL.md at its package root, and follow the standards in the [Skill Handbook](../skill-handbook/README.md).
 
-A category is an organizing label, not a skill by itself. Add a directory only when a concrete workflow has been designed and evaluated.
+A category is an organizing label, not a skill by itself. Add a directory only when a concrete workflow has been designed with a validation plan and evaluation cases.
 
 ## Package convention
 
