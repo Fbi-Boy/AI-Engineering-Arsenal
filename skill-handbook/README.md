@@ -107,8 +107,7 @@ Use **Draft**, **In Review**, **Ready**, or **Deprecated** as lifecycle labels. 
 
 - [Agent Skills — Specification](https://agentskills.io/specification)
 - [Agent Skills — Overview](https://agentskills.io/home)
-- [OpenAI — Build skills](https://developers.openai.com/api/docs/guides/tools-skills)
-- [OpenAI Developers — Skills](https://developers.openai.com/api/docs/guides/tools-skills)
+- [OpenAI API — Skills](https://developers.openai.com/api/docs/guides/tools-skills)
 - [OpenAI Developers — Build skills](https://developers.openai.com/plugins/build/skills)
 - [OpenAI Developers — Skills in plugins](https://developers.openai.com/plugins/concepts/skills)
 
