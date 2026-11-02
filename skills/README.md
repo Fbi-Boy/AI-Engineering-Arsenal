@@ -49,13 +49,19 @@ The following packages have been submitted for review. "In Review" does not mean
 | sequence-diagram-modeling | In Review | Model time-ordered interactions, alternatives, asynchronous flows, and failures | [sequence-diagram-modeling/](requirements-engineering/sequence-diagram-modeling/) |
 | acceptance-criteria | In Review | Write observable acceptance conditions for requirements and user stories | [acceptance-criteria/](quality-engineering/acceptance-criteria/) |
 | test-plan-design | In Review | Plan risk-based verification, traceability, test levels, environments, and release exit criteria | [test-plan-design/](quality-engineering/test-plan-design/) |
+| automated-test-authoring | In Review | Author deterministic automated tests from requirements using appropriate test levels, fixtures, and assertions | [automated-test-authoring/](quality-engineering/automated-test-authoring/) |
 | architecture-decision-record | In Review | Document significant architecture decisions, options, rationale, and consequences | [architecture-decision-record/](architecture/architecture-decision-record/) |
 | system-architecture-design | In Review | Create C4-oriented system architecture proposals and quality trade-off analysis | [system-architecture-design/](architecture/system-architecture-design/) |
 | api-design | In Review | Design secure, evolvable HTTP API contracts and OpenAPI documentation | [api-design/](backend-engineering/api-design/) |
 | database-erd-design | In Review | Model relational entities, attributes, keys, relationships, and constraints | [database-erd-design/](database-engineering/database-erd-design/) |
 | database-schema-review | In Review | Review existing relational schemas, integrity, indexes, and migration safety | [database-schema-review/](database-engineering/database-schema-review/) |
 | frontend-feature-implementation | In Review | Implement user-facing frontend features within the existing stack, with accessibility and responsive verification | [frontend-feature-implementation/](frontend-engineering/frontend-feature-implementation/) |
+| frontend-testing | In Review | Verify UI behavior, accessibility, responsive states, browser interactions, and critical user journeys | [frontend-testing/](frontend-engineering/frontend-testing/) |
 | backend-feature-implementation | In Review | Implement server-side features with validation, authorization, integrity, and integration safeguards | [backend-feature-implementation/](backend-engineering/backend-feature-implementation/) |
+| backend-testing | In Review | Verify server behavior, authorization, persistence, transactions, integrations, and data integrity | [backend-testing/](backend-engineering/backend-testing/) |
+| security-review | In Review | Review code and system changes for trust-boundary, identity, data-protection, dependency, and configuration risks | [security-review/](security-engineering/security-review/) |
+| ci-cd-pipeline-design | In Review | Design secure CI/CD stages, artifact promotion, workflow permissions, environment gates, and recovery | [ci-cd-pipeline-design/](devops-platform/ci-cd-pipeline-design/) |
+| release-readiness-review | In Review | Assess release evidence, quality and security gates, operations, recovery, risks, and approvals | [release-readiness-review/](release-engineering/release-readiness-review/) |
 
 ## Initial domain taxonomy
 
@@ -111,17 +117,19 @@ Build the library in vertical slices. Prioritize complete, reviewed, evaluated s
 
 19. test-plan-design
 20. automated-test-authoring
-21. security-review
-22. ci-cd-pipeline-design
-23. release-readiness-review
+21. frontend-testing
+22. backend-testing
+23. security-review
+24. ci-cd-pipeline-design
+25. release-readiness-review
 
 ### Phase 5 — Advanced capabilities
 
-24. rag-system-design
-25. ai-agent-workflow-design
-26. mcp-tool-integration
-27. performance-analysis
-28. technical-documentation
+26. rag-system-design
+27. ai-agent-workflow-design
+28. mcp-tool-integration
+29. performance-analysis
+30. technical-documentation
 
 Priorities may change based on actual project demand, evaluation results, and maintenance cost.
 
