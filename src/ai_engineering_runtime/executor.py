@@ -75,6 +75,9 @@ def _preflight(plan: WorkflowPlan, handlers: Mapping[str, TaskHandler]) -> tuple
     if plan.status != "ready":
         issues.append(f"workflow plan must be ready; received {plan.status!r}")
         return tuple(issues)
+    if not plan.tasks:
+        issues.append("workflow plan must contain at least one task")
+        return tuple(issues)
 
     task_ids = [task.task_id for task in plan.tasks]
     if len(task_ids) != len(set(task_ids)):
@@ -92,9 +95,10 @@ def _preflight(plan: WorkflowPlan, handlers: Mapping[str, TaskHandler]) -> tuple
         if task.route.selected is None:
             issues.append(f"task {task.task_id!r} has no selected skill")
             continue
-        if task.route.selected.name not in handlers:
+        handler = handlers.get(task.route.selected.name)
+        if not callable(handler):
             issues.append(
-                f"no handler registered for skill {task.route.selected.name!r} "
+                f"no callable handler registered for skill {task.route.selected.name!r} "
                 f"(task {task.task_id!r})"
             )
         for dependency in task.depends_on:
