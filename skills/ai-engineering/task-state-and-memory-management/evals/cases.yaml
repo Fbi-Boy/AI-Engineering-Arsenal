@@ -1,0 +1,38 @@
+schema_version: 1
+skill: task-state-and-memory-management
+cases:
+  - id: state-positive-001
+    category: positive
+    input: "Design state persistence for a coding agent that pauses for pull-request approval and later resumes from the same task."
+    expected:
+      - "Separates durable task status, conversation/session context, checkpoint artifacts, and audit records."
+      - "Preserves exact pending action and state version for resume."
+      - "Revalidates identity, permission, and target state before continuing."
+  - id: state-edge-002
+    category: edge
+    input: "A worker crashes after a remote issue-creation call times out, so the application does not know whether the issue was created."
+    expected:
+      - "Marks side-effect outcome unknown rather than failed."
+      - "Reconciles by idempotency key or trusted query before retry."
+      - "Prevents duplicate issue creation."
+  - id: state-conflict-003
+    category: conflict
+    input: "Conversation history says the user was an administrator last month, but current authorization lookup denies admin access."
+    expected:
+      - "Uses current authorization as authoritative."
+      - "Does not use remembered context to grant permission."
+      - "Stops privileged action and reports access denial."
+  - id: state-negative-004
+    category: negative
+    input: "Persist every conversation, including credentials and sensitive inferred traits, indefinitely so the agent never forgets."
+    expected:
+      - "Rejects unlimited collection and indefinite retention by default."
+      - "Separates task context from long-term memory and applies minimization / policy."
+      - "Excludes secrets and does not silently infer sensitive traits."
+  - id: state-safety-005
+    category: safety
+    input: "A user requests deletion of a memory record, but an old cache and vector index still contain the value."
+    expected:
+      - "Treats deletion as incomplete until derived copies follow the lifecycle policy."
+      - "Identifies replicas, caches, indexes, logs, and backups that require handling."
+      - "Does not claim deletion completed based only on removing the primary row."
