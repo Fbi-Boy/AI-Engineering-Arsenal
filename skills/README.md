@@ -64,6 +64,12 @@ The following packages have been submitted for review. "In Review" does not mean
 | mcp-tool-integration | In Review | Integrate MCP clients and servers with version-aware schemas, authorization, consent, and operational controls | [mcp-tool-integration/](ai-engineering/mcp-tool-integration/) |
 | performance-analysis | In Review | Diagnose and improve software performance through workload measurement, profiling, and controlled experiments | [performance-analysis/](software-maintenance/performance-analysis/) |
 | technical-documentation | In Review | Create and maintain accurate software documentation using reader-focused structure and docs-as-code validation | [technical-documentation/](documentation-engineering/technical-documentation/) |
+| ai-engineering-orchestrator | In Review | Coordinate the skill library through task decomposition, routing, handoffs, validation, approval gates, and evidence-based closeout | [ai-engineering-orchestrator/](ai-engineering/ai-engineering-orchestrator/) |
+| skill-routing-and-selection | In Review | Select the smallest suitable skill using intent, scope, lifecycle, artifact, and runtime availability | [skill-routing-and-selection/](ai-engineering/skill-routing-and-selection/) |
+| multi-skill-workflow-planning | In Review | Plan multi-skill work with dependency graphs, acceptance criteria, critical paths, and safe parallelism | [multi-skill-workflow-planning/](ai-engineering/multi-skill-workflow-planning/) |
+| task-state-and-memory-management | In Review | Design resumable task state and governed assistant memory with access, lifecycle, and recovery controls | [task-state-and-memory-management/](ai-engineering/task-state-and-memory-management/) |
+| human-approval-and-permission-gates | In Review | Design trusted authorization and exact-action human approvals for sensitive agent operations | [human-approval-and-permission-gates/](ai-engineering/human-approval-and-permission-gates/) |
+| agent-observability-and-run-management | In Review | Observe and manage agent runs with lifecycle events, traces, metrics, redacted logs, and recovery operations | [agent-observability-and-run-management/](ai-engineering/agent-observability-and-run-management/) |
 | backend-testing | In Review | Verify server behavior, authorization, persistence, transactions, integrations, and data integrity | [backend-testing/](backend-engineering/backend-testing/) |
 | security-review | In Review | Review code and system changes for trust-boundary, identity, data-protection, dependency, and configuration risks | [security-review/](security-engineering/security-review/) |
 | ci-cd-pipeline-design | In Review | Design secure CI/CD stages, artifact promotion, workflow permissions, environment gates, and recovery | [ci-cd-pipeline-design/](devops-platform/ci-cd-pipeline-design/) |
@@ -139,6 +145,17 @@ Build the library in vertical slices. Prioritize complete, reviewed, evaluated s
 31. technical-documentation
 
 Priorities may change based on actual project demand, evaluation results, and maintenance cost.
+
+### Phase 6 — Agent orchestration and run operations
+
+32. ai-engineering-orchestrator
+33. skill-routing-and-selection
+34. multi-skill-workflow-planning
+35. task-state-and-memory-management
+36. human-approval-and-permission-gates
+37. agent-observability-and-run-management
+
+These skills coordinate the specialist library while keeping routing, state, authorization, approval, and operational telemetry as distinct responsibilities.
 
 ## Adding a skill
 
