@@ -61,8 +61,11 @@ def load_registry(skills_dir: str | Path = "skills") -> RegistryReport:
             continue
 
         name = metadata["name"]
-        if not _SKILL_NAME.fullmatch(name):
-            issues.append(RegistryIssue(str(manifest), "skill name must be lowercase kebab-case"))
+        if len(name) > 64 or not _SKILL_NAME.fullmatch(name):
+            issues.append(RegistryIssue(str(manifest), "skill name must be 1-64 characters and lowercase kebab-case"))
+            continue
+        if len(metadata["description"]) > 1024:
+            issues.append(RegistryIssue(str(manifest), "skill description must not exceed 1024 characters"))
             continue
         if name != package_dir.name:
             issues.append(RegistryIssue(str(manifest), f"manifest name '{name}' does not match directory '{package_dir.name}'"))
