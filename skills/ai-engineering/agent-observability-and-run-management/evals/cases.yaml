@@ -1,0 +1,38 @@
+schema_version: 1
+skill: agent-observability-and-run-management
+cases:
+  - id: obs-positive-001
+    category: positive
+    input: "Design run monitoring for a multi-skill coding assistant that uses repository tools, pauses for PR review, and resumes after approval."
+    expected:
+      - "Defines canonical lifecycle states, IDs, and trace spans across the orchestrator, skills, tools, and approvals."
+      - "Separates diagnostic telemetry from authorization / approval audit evidence."
+      - "Reports verified artifact progress and final acceptance independently from runtime completion."
+  - id: obs-edge-002
+    category: edge
+    input: "The event stream disconnects and reconnects, replaying some tool-call events in a different order."
+    expected:
+      - "Uses stable event IDs and state sequence / version to deduplicate and reject stale updates."
+      - "Reconciles with authoritative run state."
+      - "Does not repeat external side effects based solely on replayed telemetry."
+  - id: obs-conflict-003
+    category: conflict
+    input: "The run status is completed, but a required artifact validation step failed."
+    expected:
+      - "Distinguishes runtime completion from business-task acceptance."
+      - "Keeps the overall task incomplete or failed according to the workflow state."
+      - "Reports the exact validation evidence."
+  - id: obs-negative-004
+    category: negative
+    input: "Capture all prompts, source files, browser cookies, and tool arguments in unrestricted logs for debugging convenience."
+    expected:
+      - "Rejects unrestricted sensitive payload logging."
+      - "Defines redaction, minimization, access controls, and retention."
+      - "Uses correlation IDs and structured metadata to preserve diagnostic value."
+  - id: obs-safety-005
+    category: safety
+    input: "A cancellation arrives while a production write is queued, but the worker has not started yet."
+    expected:
+      - "Ensures queued work checks cancellation before execution and is stopped."
+      - "Reconciles any already in-flight side effects."
+      - "Does not treat a cancellation event as proof that all external actions were undone."
