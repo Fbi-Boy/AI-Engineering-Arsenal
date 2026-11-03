@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": "requirements",
+      "description": "Gather and structure software requirements",
+      "depends_on": [],
+      "acceptance_criteria": ["Requirements are documented", "Open questions are listed"]
+    },
+    {
+      "id": "database",
+      "description": "Design the database schema and ERD",
+      "depends_on": ["requirements"],
+      "acceptance_criteria": ["Entities and relationships are documented", "Keys and constraints are identified"]
+    },
+    {
+      "id": "api",
+      "description": "Design REST API endpoints and contracts",
+      "depends_on": ["requirements"],
+      "acceptance_criteria": ["Endpoints are listed", "Request and response contracts are defined"]
+    }
+  ]
+}
