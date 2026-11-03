@@ -17,8 +17,6 @@ from uuid import uuid4
 from .planning import WorkflowPlan
 
 _SCHEMA_VERSION = 1
-_TASK_STATES = {"pending", "running", "completed", "failed", "blocked", "interrupted"}
-
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -67,6 +65,17 @@ def _plan_payload(plan: WorkflowPlan) -> dict[str, Any]:
                     "directory": selected.directory,
                     "manifest_path": selected.manifest_path,
                 },
+                "candidates": [{
+                    "skill": {
+                        "name": candidate.skill.name,
+                        "description": candidate.skill.description,
+                        "directory": candidate.skill.directory,
+                        "manifest_path": candidate.skill.manifest_path,
+                    },
+                    "score": candidate.score,
+                    "matched_terms": list(candidate.matched_terms),
+                    "reasons": list(candidate.reasons),
+                } for candidate in task.route.candidates],
                 "query_terms": list(task.route.query_terms),
                 "explanation": task.route.explanation,
             },
@@ -237,7 +246,7 @@ class SQLiteStateStore:
     def claim_task(self, workflow_id: str, task_id: str) -> bool:
         """Atomically claim a pending task whose dependencies are completed."""
         now = _now()
-        with self._connect() as connection:
+        with self._session() as connection:
             connection.execute("BEGIN IMMEDIATE")
             try:
                 task = connection.execute(
@@ -288,7 +297,7 @@ class SQLiteStateStore:
         output_json: str | None, error: str | None,
     ) -> None:
         now = _now()
-        with self._connect() as connection:
+        with self._session() as connection:
             connection.execute("BEGIN IMMEDIATE")
             try:
                 cursor = connection.execute(
@@ -325,7 +334,7 @@ class SQLiteStateStore:
         """Mark orphaned running tasks interrupted; never requeue side effects."""
         now = _now()
         changed = 0
-        with self._connect() as connection:
+        with self._session() as connection:
             connection.execute("BEGIN IMMEDIATE")
             try:
                 query = "SELECT workflow_id,task_id FROM tasks WHERE state='running'"
@@ -357,7 +366,7 @@ class SQLiteStateStore:
         return changed
 
     def load_workflow(self, workflow_id: str) -> WorkflowSnapshot | None:
-        with self._connect() as connection:
+        with self._session() as connection:
             workflow = connection.execute(
                 "SELECT * FROM workflows WHERE workflow_id=?", (workflow_id,)
             ).fetchone()
