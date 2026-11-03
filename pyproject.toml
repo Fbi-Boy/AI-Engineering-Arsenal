@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-engineering-runtime"
+version = "0.1.0"
+description = "Provider-neutral runtime foundation for AI Engineering Arsenal skills"
+readme = "runtime/README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "AI Engineering Arsenal contributors" }]
+dependencies = []
+
+[project.scripts]
+aea-runtime = "ai_engineering_runtime.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
