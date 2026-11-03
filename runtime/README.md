@@ -38,7 +38,7 @@ Execution is currently a Python API, not a CLI command. Applications register
 trusted callables by skill name and call `execute_workflow` with a ready plan
 and an `ExecutionApproval` attestation. The executor performs preflight checks,
 runs tasks sequentially, records state transitions, blocks dependents after
-failure, and continues independent tasks. See [EXECUTION.md](EXECUTION.md).
+failure, and continues independent tasks. See [EXECUTION.md](EXECUTION.md) and [PERSISTENCE.md](PERSISTENCE.md) for the persistence API and its recovery contract.
 
 The approval attestation is not authentication or policy enforcement. Handlers
 are trusted Python code and may perform arbitrary actions; never register
@@ -64,5 +64,5 @@ decompose arbitrary natural-language requests. The executor invokes only
 explicitly registered Python handlers and runs sequentially. Model-backed
 decomposition, durable state, authentication and permission enforcement,
 browser/local tool adapters, retries, cancellation, safe concurrency, and
-observability remain future runtime layers. Loading or selecting a skill
+observability remain future runtime layers. The optional SQLite persistence primitive is available through `SQLiteStateStore`, but the executor does not integrate with it automatically. Loading or selecting a skill
 must never grant it authority.
