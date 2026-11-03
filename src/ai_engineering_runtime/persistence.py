@@ -5,6 +5,7 @@ pickle, executes handlers, or automatically retries interrupted work.
 """
 from __future__ import annotations
 
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 import json
@@ -119,6 +120,8 @@ class SQLiteStateStore:
     """
 
     def __init__(self, database: str | Path, *, busy_timeout_ms: int = 5000):
+        if str(database) == ":memory:":
+            raise ValueError("use a file-backed database; in-memory databases cannot survive per-operation connections")
         if busy_timeout_ms < 0:
             raise ValueError("busy_timeout_ms must be non-negative")
         self.database = str(database)
@@ -137,17 +140,25 @@ class SQLiteStateStore:
             connection.execute("PRAGMA journal_mode = WAL")
         return connection
 
+    @contextmanager
+    def _session(self):
+        connection = self._connect()
+        try:
+            yield connection
+        finally:
+            connection.close()
+
     def _initialize(self) -> None:
-        with self._connect() as connection:
+        with self._session() as connection:
             version = connection.execute("PRAGMA user_version").fetchone()[0]
             if version > _SCHEMA_VERSION:
                 raise RuntimeError(
                     f"database schema version {version} is newer than supported {_SCHEMA_VERSION}"
                 )
             if version == 0:
-                connection.execute("BEGIN IMMEDIATE")
                 try:
                     connection.executescript("""
+                        BEGIN IMMEDIATE;
                         CREATE TABLE workflows (
                             workflow_id TEXT PRIMARY KEY,
                             status TEXT NOT NULL,
@@ -193,7 +204,7 @@ class SQLiteStateStore:
             raise ValueError("workflow_id must not be empty")
         plan_json = _encode_json(_plan_payload(plan))
         created = _now()
-        with self._connect() as connection:
+        with self._session() as connection:
             connection.execute("BEGIN IMMEDIATE")
             try:
                 connection.execute(
