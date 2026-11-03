@@ -58,6 +58,12 @@ The following packages have been submitted for review. "In Review" does not mean
 | frontend-feature-implementation | In Review | Implement user-facing frontend features within the existing stack, with accessibility and responsive verification | [frontend-feature-implementation/](frontend-engineering/frontend-feature-implementation/) |
 | frontend-testing | In Review | Verify UI behavior, accessibility, responsive states, browser interactions, and critical user journeys | [frontend-testing/](frontend-engineering/frontend-testing/) |
 | backend-feature-implementation | In Review | Implement server-side features with validation, authorization, integrity, and integration safeguards | [backend-feature-implementation/](backend-engineering/backend-feature-implementation/) |
+| rag-system-design | In Review | Design secure retrieval-augmented generation pipelines with grounded answers, provenance, freshness, and evaluation | [rag-system-design/](ai-engineering/rag-system-design/) |
+| ai-agent-workflow-design | In Review | Design bounded agent workflows with tools, state, handoffs, approvals, guardrails, and observability | [ai-agent-workflow-design/](ai-engineering/ai-agent-workflow-design/) |
+| ai-evaluation-design | In Review | Design representative datasets, metrics, calibrated graders, safety evaluations, and regression gates for AI systems | [ai-evaluation-design/](ai-engineering/ai-evaluation-design/) |
+| mcp-tool-integration | In Review | Integrate MCP clients and servers with version-aware schemas, authorization, consent, and operational controls | [mcp-tool-integration/](ai-engineering/mcp-tool-integration/) |
+| performance-analysis | In Review | Diagnose and improve software performance through workload measurement, profiling, and controlled experiments | [performance-analysis/](software-maintenance/performance-analysis/) |
+| technical-documentation | In Review | Create and maintain accurate software documentation using reader-focused structure and docs-as-code validation | [technical-documentation/](documentation-engineering/technical-documentation/) |
 | backend-testing | In Review | Verify server behavior, authorization, persistence, transactions, integrations, and data integrity | [backend-testing/](backend-engineering/backend-testing/) |
 | security-review | In Review | Review code and system changes for trust-boundary, identity, data-protection, dependency, and configuration risks | [security-review/](security-engineering/security-review/) |
 | ci-cd-pipeline-design | In Review | Design secure CI/CD stages, artifact promotion, workflow permissions, environment gates, and recovery | [ci-cd-pipeline-design/](devops-platform/ci-cd-pipeline-design/) |
@@ -127,9 +133,10 @@ Build the library in vertical slices. Prioritize complete, reviewed, evaluated s
 
 26. rag-system-design
 27. ai-agent-workflow-design
-28. mcp-tool-integration
-29. performance-analysis
-30. technical-documentation
+28. ai-evaluation-design
+29. mcp-tool-integration
+30. performance-analysis
+31. technical-documentation
 
 Priorities may change based on actual project demand, evaluation results, and maintenance cost.
 
