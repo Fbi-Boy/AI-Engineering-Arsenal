@@ -70,7 +70,7 @@ class RegistryTests(unittest.TestCase):
             package = root / "long-description"
             package.mkdir()
             (package / "SKILL.md").write_text(
-                "---\\nname: long-description\\ndescription: " + ("x" * 1025) + "\\n---\\n",
+                "---\nname: long-description\ndescription: " + ("x" * 1025) + "\n---\n",
                 encoding="utf-8",
             )
             report = load_registry(root)
