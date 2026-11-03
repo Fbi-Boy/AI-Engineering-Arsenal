@@ -9,6 +9,7 @@ from .executor import (
 )
 from .models import RegistryIssue, RegistryReport, SkillManifest
 from .planning import PlannedTask, TaskDraft, WorkflowPlan, plan_workflow
+from .persistence import SQLiteStateStore, StoredEvent, StoredTask, WorkflowSnapshot
 from .registry import load_registry
 from .routing import (
     RouteCandidate,
@@ -37,5 +38,9 @@ __all__ = [
     "route_task",
     "plan_workflow",
     "execute_workflow",
+    "SQLiteStateStore",
+    "StoredTask",
+    "StoredEvent",
+    "WorkflowSnapshot",
 ]
 __version__ = "0.1.0"
