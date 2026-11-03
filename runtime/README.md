@@ -2,7 +2,8 @@
 
 This is the executable foundation for the AI Engineering Arsenal. It provides
 a provider-neutral Python package for discovering and validating skill
-manifests, routing task drafts, and planning multi-skill workflows.
+manifests, routing task drafts, planning multi-skill workflows, and executing
+ready plans through explicitly registered application handlers.
 
 ## Requirements
 
@@ -31,6 +32,19 @@ The `plan` command accepts an explicit JSON task list. Each task requires an
 See [WORKFLOW_PLANNING.md](WORKFLOW_PLANNING.md) for the contract and
 [runtime/examples/workflow.json](examples/workflow.json) for a sample.
 
+## Workflow execution API
+
+Execution is currently a Python API, not a CLI command. Applications register
+trusted callables by skill name and call `execute_workflow` with a ready plan
+and an `ExecutionApproval` attestation. The executor performs preflight checks,
+runs tasks sequentially, records state transitions, blocks dependents after
+failure, and continues independent tasks. See [EXECUTION.md](EXECUTION.md).
+
+The approval attestation is not authentication or policy enforcement. Handlers
+are trusted Python code and may perform arbitrary actions; never register
+untrusted skill content as a handler. The runtime does not interpret
+`SKILL.md` as code.
+
 ## Registry contract
 
 A package is discovered from skills/<skill-name>/SKILL.md. The frontmatter
@@ -46,9 +60,9 @@ or arbitrary objects.
 
 The router uses lexical metadata matching. The workflow planner validates
 explicit task drafts and dependency graphs; it does not automatically
-decompose arbitrary natural-language requests. Planning and routing are
-advisory: no skill instructions are executed, no model is invoked, no browser
-is accessed, and no external side effects are performed. Model-backed
-decomposition, workflow execution, persistence, approval enforcement, and
+decompose arbitrary natural-language requests. The executor invokes only
+explicitly registered Python handlers and runs sequentially. Model-backed
+decomposition, durable state, authentication and permission enforcement,
+browser/local tool adapters, retries, cancellation, safe concurrency, and
 observability remain future runtime layers. Loading or selecting a skill
 must never grant it authority.
