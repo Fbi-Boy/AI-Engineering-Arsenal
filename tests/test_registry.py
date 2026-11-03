@@ -56,6 +56,27 @@ class RegistryTests(unittest.TestCase):
             self.assertFalse(report.is_valid)
             self.assertIn("does not match directory", report.issues[0].message)
 
+    def test_rejects_skill_names_longer_than_64_characters(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self._skill(root, "a" * 65)
+            report = load_registry(root)
+            self.assertFalse(report.is_valid)
+            self.assertIn("1-64 characters", report.issues[0].message)
+
+    def test_rejects_descriptions_longer_than_1024_characters(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            package = root / "long-description"
+            package.mkdir()
+            (package / "SKILL.md").write_text(
+                "---\\nname: long-description\\ndescription: " + ("x" * 1025) + "\\n---\\n",
+                encoding="utf-8",
+            )
+            report = load_registry(root)
+            self.assertFalse(report.is_valid)
+            self.assertIn("1024 characters", report.issues[0].message)
+
     def test_missing_directory_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             report = load_registry(Path(temporary) / "missing")
