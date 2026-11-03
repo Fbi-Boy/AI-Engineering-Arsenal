@@ -1,8 +1,8 @@
 # AI Engineering Runtime v0.1
 
-This is the first executable foundation for the AI Engineering Arsenal. It
-provides a provider-neutral Python package that discovers and validates
-SKILL.md packages on disk.
+This is the executable foundation for the AI Engineering Arsenal. It provides
+a provider-neutral Python package for discovering and validating skill
+manifests, routing task drafts, and planning multi-skill workflows.
 
 ## Requirements
 
@@ -13,19 +13,23 @@ SKILL.md packages on disk.
 
 From the repository root:
 
-\`\`\`bash
+```bash
 python -m pip install -e .
-\`\`\`
+```
 
 ## Commands
 
-\`\`\`bash
+```bash
 aea-runtime list --skills-dir skills
 aea-runtime validate --skills-dir skills
-\`\`\`
+aea-runtime route --request "Design a database schema" --skills-dir skills
+aea-runtime plan --input runtime/examples/workflow.json --skills-dir skills
+```
 
-The CLI reads package metadata only. It does not execute skill instructions,
-invoke a model, access a browser, or perform filesystem writes.
+The `plan` command accepts an explicit JSON task list. Each task requires an
+`id`, `description`, and `acceptance_criteria` array; `depends_on` is optional.
+See [WORKFLOW_PLANNING.md](WORKFLOW_PLANNING.md) for the contract and
+[runtime/examples/workflow.json](examples/workflow.json) for a sample.
 
 ## Registry contract
 
@@ -40,8 +44,11 @@ or arbitrary objects.
 
 ## Current boundary
 
-v0.1 is a registry foundation, not yet an AI orchestrator. Model-backed
-intent routing, skill invocation, workflow execution, persistence, approval
-enforcement, and observability are planned runtime layers. Those layers must
-use explicit adapters and enforce permissions before side effects; merely
-loading a skill must never grant it authority.
+The router uses lexical metadata matching. The workflow planner validates
+explicit task drafts and dependency graphs; it does not automatically
+decompose arbitrary natural-language requests. Planning and routing are
+advisory: no skill instructions are executed, no model is invoked, no browser
+is accessed, and no external side effects are performed. Model-backed
+decomposition, workflow execution, persistence, approval enforcement, and
+observability remain future runtime layers. Loading or selecting a skill
+must never grant it authority.
